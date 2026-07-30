@@ -193,10 +193,10 @@ aside {
     justify-content: start;
 }
 
-footer {
-    justify-self: center;
-    align-self: end;
-}
+/*footer {*/
+/*    justify-self: center;*/
+/*    align-self: end;*/
+/*}*/
 
 img {
     max-width: 100%;

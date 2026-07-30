@@ -75,6 +75,11 @@ aside {
     justify-content: end;
 }
 
+footer {
+    justify-self: center;
+    align-self: end;
+}
+
 @media screen and (max-width: 480px) {
     body {
         font-size: auto;
