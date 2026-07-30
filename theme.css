@@ -14,7 +14,7 @@ h1 {
 nav {
     /*grid-column: 1/4;*/
     font-family: fantasy, sans-serif;
-    grid-area: nav;
+    /*grid-area: nav;*/
     font-size: 20px;
     justify-content: center;
 }
@@ -82,7 +82,7 @@ footer {
 
 @media screen and (max-width: 480px) {
     body {
-        font-size: auto;
+        font-size: 20px;
         grid-template-columns: 1fr;
         grid-template-areas:
             "header"

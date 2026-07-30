@@ -62,13 +62,15 @@ navLinks.forEach(function(link) {
 
 if (themeButton) {
     themeButton.addEventListener("click", function() {
-        console.log("Theme Master clicked");
-        turnOnTheme();
-    });
+        const themeLink = document.querySelector("#theme-stylesheet");
 
-    themeButton.addEventListener("dblclick", function() {
-        console.log("Theme Master double-clicked");
-        turnOffTheme();
+        if (themeLink) {
+            console.log("Theme Master clicked: theme off");
+            turnOffTheme();
+        } else {
+            console.log("Theme Master clicked: theme on");
+            turnOnTheme();
+        }
     });
 }
 
