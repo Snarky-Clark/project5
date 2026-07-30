@@ -112,14 +112,16 @@
         <input type="text" id="zip" name="zip" placeholder="Zip Code">
         <input type="text" name="phone" placeholder="Phone Number" pattern="(###) ###-####">
         <input type="email" name="email" placeholder="Email">
-        <input type="checkbox" id="discoveryMethod" name="discoveryMethod" value="discoveryMethod">How did you hear about us?
-            <option value="discoveryMethod">Google</option>
-            <option value="discoveryMethod">Instagram</option>
-            <option value="discoveryMethod">Facebook</option>
-            <option value="discoveryMethod">Friend</option>
-            <option value="discoveryMethod">Employer</option>
-            <option value="discoveryMethod">Enemy</option>
-            <option value="discoveryMethod">Other</option>
+        <input type="checkbox" id="discoveryMethod" name="discoveryMethod">How did you find us?
+        <select name="discoveryMethod">
+            <option value="Google">Google</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Friend">Friend</option>
+            <option value="Employer">Employer</option>
+            <option value="Enemy">Enemy</option>
+            <option value="Other">Other</option>
+        </select>
         <input type="textarea" id="comments" name="comments" placeholder="Comments">
         <input type="submit" value="Submit">
     </form>
