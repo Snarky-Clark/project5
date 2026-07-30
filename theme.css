@@ -1,0 +1,88 @@
+header {
+    grid-area: header;
+    /*font-family: fantasy, sans-serif;*/
+    color: orange;
+    background-color: darkred;
+    border: 1px solid black;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: fantasy, sans-serif;
+}
+
+nav {
+    /*grid-column: 1/4;*/
+    font-family: fantasy, sans-serif;
+    grid-area: nav;
+    font-size: 20px;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+nav li {
+    display: inline-block;
+    background-color: black;
+}
+
+nav a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 3px 6px;
+    box-shadow: darkgray 2px 2px;
+    display: block;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+        "header header"
+        "article aside"
+        "footer footer";
+    align-items: start;
+    font-family: fantasy, sans-serif;
+    color: darkorange;
+    background-color: darkred;
+    margin: 0;
+}
+
+nav a {
+    color: darkorange;
+}
+
+nav a:hover {
+    color: black;
+}
+
+aside {
+    grid-area: aside;
+    padding: 240px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: self-end;
+    justify-content: end;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: auto;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "article"
+            "aside"
+            "footer";
+    }
+}

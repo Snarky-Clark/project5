@@ -1,0 +1,214 @@
+.headerbar {
+    font-family: cursive, fantasy, sans-serif;
+    width: 100%;
+    background-color: black;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+        "master title theme"
+        "nav nav nav";
+    align-items: start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.guildmaster {
+    font-family: cursive, fantasy, sans-serif;
+    grid-area: master;
+    justify-self: start;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+}
+
+.guildmaster img {
+    width: auto;
+    height: 100px;
+}
+
+.guildmaster img:hover {
+    opacity: 0.5;
+}
+
+.thememaster {
+    font-family: cursive, fantasy, sans-serif;
+    grid-area: theme;
+    justify-self: end;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.thememaster img {
+    width: auto;
+    height: 100px;
+    cursor: pointer;
+}
+
+.thememaster img:hover {
+    opacity: 0.5;
+}
+
+h1 {
+    grid-area: title;
+    justify-self: center;
+    align-self: center;
+    font-size: clamp(45px, 8vw, 100px);
+    margin: 10px;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+nav {
+    /*grid-column: 1/4;*/
+    grid-area: nav;
+    font-size: 30px;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+    nav li {
+        display: inline-block;
+        background-color: black;
+    }
+
+nav a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 3px 6px;
+    box-shadow: darkgray 2px 2px;
+    display: block;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+        "header header"
+        "aside article"
+        "footer footer";
+    align-items: start;
+    font-family: sans-serif;
+    color: aliceblue;
+    background-color: darkslategray;
+    margin: 0;
+}
+
+@media screen and (max-width: 1000px) {
+    nav {
+        font-size: 24px;
+    }
+
+    nav ul {
+        gap: 14px;
+    }
+
+    nav a {
+        padding: 3px 5px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    nav {
+        font-size: 20px;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav a {
+        padding: 3px 4px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    nav {
+        font-size: 16px;
+    }
+
+    nav ul {
+        gap: 6px;
+    }
+
+    nav a {
+        padding: 2px 4px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    nav {
+        font-size: 14px;
+    }
+
+    nav ul {
+        gap: 4px;
+    }
+
+    nav a {
+        padding: 2px 3px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    nav {
+        font-size: 12px;
+    }
+
+    nav ul {
+        gap: 3px;
+    }
+
+    nav a {
+        padding: 2px;
+    }
+}
+
+article {
+    grid-area: article;
+    padding: 240px 20px 20px;
+}
+
+aside {
+    grid-area: aside;
+    padding: 240px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: start;
+}
+
+footer {
+    justify-self: center;
+    align-self: end;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    grid-area: footer;
+}
+
+section {
+    scroll-margin-top: 220px;
+    margin-bottom: 40px;
+}
+
+.hidden {
+    display: none;
+}
