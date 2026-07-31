@@ -237,10 +237,13 @@ footer h2 {
 /*    outline-offset: 3px;*/
 /*}*/
 
-form {
+.contact-form {
     font-family: cursive, sans-serif;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
 
+.contact-form.hidden {
+    display: none;
 }

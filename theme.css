@@ -75,16 +75,24 @@ aside {
     justify-content: end;
 }
 
+.hidden {
+    display: none;
+}
+
 footer {
     justify-self: center;
     align-content: start;
 }
 
-form {
+.contact-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     font-family: fantasy, sans-serif;
+}
+
+.contact-form.hidden {
+    display: none;
 }
 
 @media screen and (max-width: 480px) {

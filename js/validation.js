@@ -37,12 +37,12 @@ function inputChanged(ev) {
     input.classList.add("was-validated");
 
     switch (input.id) {
-        case "firstName":
-            checkRequired("firstName", "First Name is required");
+        case "first-name":
+            checkRequired("first-name", "First Name is required");
             break;
 
-        case "lastName":
-            checkRequired("lastName", "Last Name is required");
+        case "last-name":
+            checkRequired("last-name", "Last Name is required");
             break;
 
         case "address":
