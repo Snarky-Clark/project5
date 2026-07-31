@@ -194,6 +194,7 @@ aside {
 }
 
 footer {
+    grid-area: footer;
     justify-self: center;
     align-self: end;
 }
@@ -211,4 +212,35 @@ section {
 
 .hidden {
     display: none;
+}
+
+footer h2 {
+    margin-bottom: 10px;
+    font-family: cursive, sans-serif;
+    color: aliceblue;
+}
+
+#contact-toggle {
+    font-family: cursive, sans-serif;
+    color: aliceblue;
+    border: 2px solid aliceblue;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+#contact-toggle:hover {
+    opacity: 0.5;
+}
+
+#contact-toggle:focus {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+form {
+    font-family: cursive, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
 }

@@ -2,7 +2,6 @@ const navLinks = document.querySelectorAll("nav a");
 const sections = document.querySelectorAll("section");
 const themeButton = document.querySelector(".thememaster");
 const foodDrinkImage = document.querySelector("#food-drink-image");
-const formButton = document.querySelector("contact-form");
 
 function hideAllSections() {
     sections.forEach(function(section) {
@@ -74,4 +73,3 @@ if (themeButton) {
         }
     });
 }
-
