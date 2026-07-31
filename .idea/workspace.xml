@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ba8fd9a-ec3d-46ca-b332-4000dbb37524" name="Changes" comment="Modified validation.js to use myform and project-based error handling and state validation.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="7ba8fd9a-ec3d-46ca-b332-4000dbb37524" name="Changes" comment="Validation.js tweaks">
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1785433801987</updated>
-      <workItem from="1785433803031" duration="20928000" />
+      <workItem from="1785433803031" duration="21343000" />
     </task>
     <task id="LOCAL-00001" summary="Transfer project files">
       <option name="closed" value="true" />
@@ -134,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785536707481</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Validation.js tweaks">
+      <option name="closed" value="true" />
+      <created>1785539293784</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1785539293784</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +164,7 @@
     <MESSAGE value="Restructure javascript functionality and add contact form to footer" />
     <MESSAGE value="Added contact form and javascript submodules" />
     <MESSAGE value="Modified validation.js to use myform and project-based error handling and state validation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified validation.js to use myform and project-based error handling and state validation." />
+    <MESSAGE value="Validation.js tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Validation.js tweaks" />
   </component>
 </project>

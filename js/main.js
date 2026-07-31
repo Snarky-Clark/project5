@@ -5,7 +5,7 @@
 // was pleasantly surprised how much better everything worked.
 
 const contactButton = document.querySelector("#contact-button");
-const contactForm = document.querySelector("#contact-form");
+const contactForm = document.querySelector("#myform");
 
 if (contactForm) {
     contactForm.classList.add("hidden");
