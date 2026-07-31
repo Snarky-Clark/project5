@@ -1,9 +1,8 @@
 /* validation.js - Form validation library */
 
-// TODO: Find a suitable phone number regex and place it here
-let phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-let emailRegex = /[\w]*@[\w]*.{1}(com|gov|edu|io|net){1}/;
-let zipCodeRegex = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+let phoneRegex = /^(\(\d{3}\)\s?|\d{3}[-.\s]?)\d{3}[-.\s]?\d{4}$/;
+let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let zipCodeRegex = /^\d{5}(-\d{4})?$/;
 
 const stateAbbreviations = [
     'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA',
@@ -20,8 +19,12 @@ function initValidation(formId, successId) {
     form = document.getElementById(formId);
     successMsg = document.getElementById(successId);
 
-    // Bind the 'change' event to all inputs
-    let inputs = document.querySelectorAll("input");
+    if (!form) {
+        return;
+    }
+
+    let inputs = form.querySelectorAll("input, textarea");
+
     for (let input of inputs) {
         input.addEventListener("change", inputChanged);
     }
@@ -29,65 +32,110 @@ function initValidation(formId, successId) {
     form.addEventListener("submit", submitForm);
 }
 
+function inputChanged(ev) {
+    let input = ev.target;
+    input.classList.add("was-validated");
+
+    switch (input.id) {
+        case "firstName":
+            checkRequired("firstName", "First Name is required");
+            break;
+
+        case "lastName":
+            checkRequired("lastName", "Last Name is required");
+            break;
+
+        case "address":
+            checkRequired("address", "Address and City is required");
+            break;
+
+        case "state":
+            if (checkRequired("state", "State is required")) {
+                validateState("state", "Not a valid state. Enter a two-letter code, e.g. UT");
+            }
+            break;
+
+        case "zip":
+            if (checkRequired("zip", "Zip Code is required")) {
+                checkFormat("zip", "Use a 5-digit or 9-digit zip code", zipCodeRegex);
+            }
+            break;
+
+        case "phone":
+            if (checkRequired("phone", "Phone number is required")) {
+                checkFormat("phone", "Use a valid phone number, e.g. 123-456-7890", phoneRegex);
+            }
+            break;
+
+        case "email":
+            if (checkRequired("email", "Email address is required")) {
+                checkFormat("email", "Use a valid email address", emailRegex);
+            }
+            break;
+    }
+
+    if (input.name === "discoveryMethod") {
+        validateDiscoveryMethod();
+    }
+}
+
 function submitForm(ev) {
-    // Prevent the browser from naturally submitting the form and refreshing the page
     ev.preventDefault();
     ev.stopPropagation();
 
     validateForm();
 
-    if (!form.checkValidity()) {
-        // TODO: If form is invalid, set 'was-validated' class on ALL inputs to show errors
-        form.classList.add("was-validated");
+    let inputs = form.querySelectorAll("input, textarea");
 
-    } else {
-        // TODO: Hide the form and show the success message
+    for (let input of inputs) {
+        input.classList.add("was-validated");
+    }
+
+    if (form.checkValidity()) {
         form.classList.add("hidden");
-        successMsg.classList.remove("hidden");
 
+        if (successMsg) {
+            successMsg.classList.remove("hidden");
+        }
     }
 }
 
 function validateForm() {
-    checkRequired("first-name", "First Name is Required");
-    checkRequired("last-name", "Last Name is Required");
-    checkRequired("address", "Address is Required");
-    checkRequired("city", "City is Required");
+    checkRequired("firstName", "First Name is required");
+    checkRequired("lastName", "Last Name is required");
+    checkRequired("address", "Address and City is required");
 
-    if (checkRequired("state", "State is Required")) {
-        validateState("state", "Not a valid State, enter two digit code e.g., UT");
-    }
-
-    if (checkRequired("email", "Email Address is required")) {
-        checkFormat("email", "Email format is bad", emailRegex);
-    }
-    if (checkRequired("zip", "Zip Code is Required")) {
-        checkFormat("zip", "Malformed zip-code, please use 5 or 9 digit format.", zipCodeRegex);
-    }
-    if (checkRequired("phone", "Phone is required")) {
-        checkFormat("phone", "Phone format is bad", phoneRegex);
+    if (checkRequired("state", "State is required")) {
+        validateState("state", "Not a valid state. Enter a two-letter code, e.g. UT");
     }
 
-    checkRequired("newspaper", "You must select at least one referral method!");
+    if (checkRequired("zip", "Zip Code is required")) {
+        checkFormat("zip", "Use a 5-digit or 9-digit zip code", zipCodeRegex);
+    }
+
+    if (checkRequired("phone", "Phone number is required")) {
+        checkFormat("phone", "Use a valid phone number, e.g. 123-456-7890", phoneRegex);
+    }
+
+    if (checkRequired("email", "Email address is required")) {
+        checkFormat("email", "Use a valid email address", emailRegex);
+    }
+
+    validateDiscoveryMethod();
 }
 
 function validateState(id, msg) {
     let el = document.getElementById(id);
-    let valid = false;
-
-    // TODO: Get value from el, convert to upper case, and check if it's in the stateAbbreviations array
-    let stateValue = el.value.toUpperCase();
-    valid = stateAbbreviations.includes(stateValue);
+    let stateValue = el.value.trim().toUpperCase();
+    let valid = stateAbbreviations.includes(stateValue);
 
     setElementValidity(id, valid, msg);
+    return valid;
 }
 
 function checkFormat(id, msg, regex) {
     let el = document.getElementById(id);
-    let valid = false;
-
-    // TODO: Test the element's value against the provided regex
-    valid = regex.test(el.value);
+    let valid = regex.test(el.value.trim());
 
     setElementValidity(id, valid, msg);
     return valid;
@@ -95,47 +143,65 @@ function checkFormat(id, msg, regex) {
 
 function checkRequired(id, message) {
     let el = document.getElementById(id);
-    let valid = false;
-    let type = el.type;
-
-    switch (type) {
-        case 'text':
-        case 'email':
-        case 'password':
-            // TODO: Check if input has a 'value', set valid to true if so, false if not
-            valid = el.value.length > 0;
-
-            break;
-
-        case 'checkbox':
-        case 'radio':
-            // TODO: Validate whether any of the checkboxes sharing this element's 'name' are checked.
-            // Set 'valid' to true if at least one is checked.
-            valid = el.checked;
-
-            break;
-    }
+    let valid = el.value.trim().length > 0;
 
     setElementValidity(id, valid, message);
     return valid;
 }
 
+function validateDiscoveryMethod() {
+    let checkboxes = document.querySelectorAll('input[name="discoveryMethod"]');
+    let checked = false;
+
+    for (let checkbox of checkboxes) {
+        if (checkbox.checked) {
+            checked = true;
+        }
+    }
+
+    let firstCheckbox = checkboxes[0];
+    let errorDiv = document.getElementById("discovery-error");
+
+    if (firstCheckbox) {
+        if (checked) {
+            firstCheckbox.setCustomValidity("");
+
+            if (errorDiv) {
+                errorDiv.textContent = "";
+            }
+        } else {
+            firstCheckbox.setCustomValidity("You must select at least one discovery method");
+
+            if (errorDiv) {
+                errorDiv.textContent = "You must select at least one discovery method";
+            }
+        }
+    }
+
+    for (let checkbox of checkboxes) {
+        checkbox.classList.add("was-validated");
+    }
+
+    return checked;
+}
+
 function setElementValidity(id, valid, message) {
     let el = document.getElementById(id);
-    let errorDiv = el.parentNode.querySelector('.errorMsg');
+    let errorDiv = el.nextElementSibling;
 
     if (valid) {
-        // Sets to no error message and field is valid
-        el.setCustomValidity('');
-        // TODO: Clear the text content of the error div
-        errorDiv.textContent = '';
+        el.setCustomValidity("");
 
-
+        if (errorDiv && errorDiv.classList.contains("errorMsg")) {
+            errorDiv.textContent = "";
+        }
     } else {
-        // Sets error message and field gets 'invalid' stat
         el.setCustomValidity(message);
-        // TODO: Insert the message into the error div
-        errorDiv.textContent = message;
 
+        if (errorDiv && errorDiv.classList.contains("errorMsg")) {
+            errorDiv.textContent = message;
+        }
     }
 }
+
+initValidation("myform", "success-message");

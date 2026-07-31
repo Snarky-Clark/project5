@@ -109,29 +109,73 @@
 </aside>
 <footer>
     <h2><button type="button" id="contact-button">Contact Us</button></h2>
-    <form class="contact-form" id="contact-form">
-        <label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" placeholder="First Name">
-        <label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" placeholder="Last Name">
-        <label for="address">Address and City</label><input type="text" id="address" name="address" placeholder="Address and city">
-        <label for="state">State</label><input type="text" id="state" name="state" placeholder="State">
-        <label for="zip">Zip Code</label><input type="text" id="zip" name="zip" placeholder="Zip Code">
-        <label for="phone">Phone Number</label><input type="number" id="phone" name="phone" placeholder="Phone Number" pattern="(###) ###-####">
-        <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Email">
-        <h3>How did you hear about us?</h3>
-        <select id="discoveryMethod" name="discoveryMethod">
-            <option value="google">Google</option>
-            <option value="instagram">Instagram</option>
-            <option value="facebook">Facebook</option>
-            <option value="friend">Friend</option>
-            <option value="advertisement">Advertisement</option>
-            <option value="employer">Employer</option>
-            <option value="enemy">Enemy</option>
-            <option value="other">Other</option>
-        </select>
-        <h3>Comments</h3>
-        <textarea id="comments" name="comments" rows="4" columns="50" placeholder="Comments"></textarea><label for="comments"></label>
-        <input type="submit" value="Submit">
+    <form class="contact-form" id="myform" novalidate onsubmit="return false;">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="First Name">
+        <div class="errorMsg"></div>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+        <div class="errorMsg"></div>
+
+        <label for="address">Address and City</label>
+        <input type="text" id="address" name="address" placeholder="Address and city">
+        <div class="errorMsg"></div>
+
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" placeholder="UT">
+        <div class="errorMsg"></div>
+
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" name="zip" placeholder="12345 or 12345-6789">
+        <div class="errorMsg"></div>
+
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="123-456-7890">
+        <div class="errorMsg"></div>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="you@example.com">
+        <div class="errorMsg"></div>
+
+        <fieldset>
+            <legend>How did you hear about us?</legend>
+
+            <label>
+                <input type="checkbox" id="google" name="discoveryMethod" value="google">
+                Google
+            </label>
+
+            <label>
+                <input type="checkbox" id="instagram" name="discoveryMethod" value="instagram">
+                Instagram
+            </label>
+
+            <label>
+                <input type="checkbox" id="facebook" name="discoveryMethod" value="facebook">
+                Facebook
+            </label>
+
+            <label>
+                <input type="checkbox" id="friend" name="discoveryMethod" value="friend">
+                Friend
+            </label>
+
+            <label>
+                <input type="checkbox" id="advertisement" name="discoveryMethod" value="advertisement">
+                Advertisement
+            </label>
+
+            <div class="errorMsg" id="discovery-error"></div>
+        </fieldset>
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="comments" rows="4" cols="50" placeholder="Comments"></textarea>
+
+        <button type="submit">Submit</button>
     </form>
+
+    <p id="success-message" class="hidden">Thanks for reaching out</p>
 </footer>
 <!--<script src="main.js"></script>-->
 </body>
